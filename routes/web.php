@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TipoVeiculoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::prefix('/')->group(function () {
+    Route::get('/', function () {
+        return view('base');
+    });
 
-Route::get('/create-tipo-veiculo', 'App\Http\Controllers\TipoVeiculoController@create');
+    Route::get('/calculargases', [TipoVeiculoController::class, 'all'])->name('pages.calculargases.index');
+    // Route::get('/create-tipo-veiculo', 'App\Http\Controllers\TipoVeiculoController@create');
+});
