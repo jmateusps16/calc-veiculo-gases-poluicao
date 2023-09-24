@@ -4,7 +4,7 @@
             style="height: 955px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
             <ul class="nav">
                 <li class="nav-item {{ str_contains(Route::currentRouteName(), 'dashboard') ? 'active' : ''}}">
-                    <a href="#">
+                    <a href="/">
                         <i class="la la-dashboard"></i>
                         <p>Informações Gerais</p>
                         {{-- <span class="badge badge-count">5</span> --}}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TipoVeiculoController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/')->group(function () {
-    Route::get('/', function () {
-        return view('base');
-    });
-
+    Route::get('/', [DashboardController::class, 'index'])->name('pages.dashboard.index');
     Route::get('/calculargases', [TipoVeiculoController::class, 'all'])->name('pages.calculargases.index');
-    // Route::get('/create-tipo-veiculo', 'App\Http\Controllers\TipoVeiculoController@create');
 });
