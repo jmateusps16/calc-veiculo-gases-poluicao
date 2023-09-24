@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('tipoveiculo', function (Blueprint $table) {
             $table->id();
+            $table->string('nome')->nullable(false);
+            $table->float('kmporlitro')->nullable(false);
             $table->timestamps();
         });
     }
