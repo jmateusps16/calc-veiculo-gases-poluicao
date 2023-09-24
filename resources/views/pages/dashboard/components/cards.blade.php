@@ -11,7 +11,7 @@
                     <div class="col-7 d-flex align-items-center">
                         <div class="numbers">
                             <p class="card-category">Visitas</p>
-                            <h4 class="card-title">1,294</h4>
+                            <h4 class="card-title">36</h4>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="col-7 d-flex align-items-center">
                         <div class="numbers">
                             <p class="card-category">Veículos</p>
-                            <h4 class="card-title">1,345</h4>
+                            <h4 class="card-title">{{ number_format($qtdVeiculos, 0, ',', '.') }}</h4>
                         </div>
                     </div>
                 </div>

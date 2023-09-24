@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\TipoVeiculo;
+use Exception;
 use Illuminate\Http\Request;
 
 class TipoVeiculoController extends Controller
 {
+
+    public function index()
+    {
+        return view('pages.cadastrarveiculo.index');
+    }
 
     public function all()
     {
@@ -15,15 +21,44 @@ class TipoVeiculoController extends Controller
         return view('pages.calculargases.index', ['tipoVeiculos' => $tipoVeiculos]);
     }
 
-    public function create()
+    public function cadastrar(Request $request)
     {
-        $tipoveiculo = new TipoVeiculo ([
-            'nome' => 'Automovel',
-            'kmporlitro' => '12',
+        $request->validate([
+            'nome' => 'required',
         ]);
 
-        $tipoveiculo->save();
+        try {
+            $nomeFormatado = preg_replace_callback('/\b\w+\b/', function ($match) {
+                return ucfirst(strtolower($match[0]));
+            }, trim($request->nome));
+        
+            $tipoveiculo = TipoVeiculo::where('nome', $nomeFormatado)->first();
 
-        return ("Tipo do veiculo cadastrado com sucesso $tipoveiculo");
+            if($tipoveiculo) {
+                return back()->with([
+                    'alert' => true,
+                    'type' => 'info',
+                    'message' => 'Tipo já cadastrado'
+                ]);
+            }
+
+            $tipoveiculo = new TipoVeiculo();
+            $tipoveiculo->nome = $nomeFormatado;
+            $tipoveiculo->kmporlitro = trim($request->kmporlitro);
+            $tipoveiculo->save();
+
+            return back()->with([
+                'alert' => true,
+                'type' => 'success',
+                'message' => $nomeFormatado . ' cadastrado com sucesso'
+            ]);
+
+        } catch (Exception $e) {
+            return back()->with([
+                'alert' => true,
+                'type' => 'danger',
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 }

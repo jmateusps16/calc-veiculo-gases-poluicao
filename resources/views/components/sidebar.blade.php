@@ -4,16 +4,23 @@
             style="height: 955px; margin-bottom: 0px; margin-right: 0px; max-height: none;">
             <ul class="nav">
                 <li class="nav-item {{ str_contains(Route::currentRouteName(), 'dashboard') ? 'active' : ''}}">
-                    <a href="/">
+                    <a href="{{ route('pages.dashboard.index') }}">
                         <i class="la la-dashboard"></i>
                         <p>Informações Gerais</p>
                         {{-- <span class="badge badge-count">5</span> --}}
                     </a>
                 </li>
-                <li class="nav-item {{ str_contains(Route::currentRouteName(), 'calculargases') ? 'active' : ''}}">
+                <li class="nav-item {{ str_contains(Route::currentRouteName(), 'calculadora') ? 'active' : ''}}">
                     <a href="{{ route('pages.calculargases.index') }}">
                         <i class="la la-calculator"></i>
                         <p>Calcular Gases</p>
+                        {{-- <span class="badge badge-count">14</span> --}}
+                    </a>
+                </li>
+                <li class="nav-item {{ str_contains(Route::currentRouteName(), 'cadastrarveiculo') ? 'active' : ''}}">
+                    <a href="{{ route('pages.cadastrarveiculo.index') }}">
+                        <i class="la la-plus"></i>
+                        <p>Adicionar Veículo</p>
                         {{-- <span class="badge badge-count">14</span> --}}
                     </a>
                 </li>
