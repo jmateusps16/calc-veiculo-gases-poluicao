@@ -48,7 +48,7 @@ class CalculadoraController extends Controller
 
     // return response()->json($dados);
     $resultadoHtml = view('pages.calculargases.resultado.index', compact('dados'))->render();
-    return response()->json(['html' => $resultadoHtml]);
+    return response()->json(['html' => $resultadoHtml, 'request' => $quantidadeDias]);
 }
 
     public function resultado()

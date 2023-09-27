@@ -60,7 +60,6 @@
 
         // Coleta os dados do formulário
         var formData = $(this).serialize();
-        console.log(formData);
 
         // Envia uma solicitação Ajax para a rota de cálculo
         $.ajax({
@@ -71,6 +70,7 @@
                 if (response.error) {
                     $('#resultado').html('<div class="alert alert-danger">' + response.error + '</div>');
                 } else {
+                    console.log(response);
                     $('#resultado').html(response.html);
                 }
             },
